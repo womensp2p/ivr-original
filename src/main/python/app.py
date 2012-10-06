@@ -18,8 +18,9 @@ app.config.from_pyfile('local_settings.py')
 # Voice Request URL
 @app.route('/voice', methods=['GET', 'POST'])
 def voice():
+    message = request.args['message']
     response = twiml.Response()
-    response.say("Bonjour, ceci est Twilio.", voice="woman", language="fr")
+    response.say(message, voice="woman", language="fr")
     return str(response)
 
 
@@ -73,13 +74,17 @@ def callmemaybe():
                     "%s" % key
             token = None
     if not configuration_error:
-        client = TwilioRestClient(app.config['TWILIO_ACCOUNT_SID'],
-                app.config['TWILIO_AUTH_TOKEN'])
-        call = client.calls.create(to="14156943179",
-                from_=app.config['TWILIO_CALLER_ID'],
-                url=url_for('.voice', _external=True))
-    params = {'token': False}
-    return render_template('callmemaybe.html', params=params,
+        try:
+            message = request.args['message']
+        except Exception:
+            message = False
+        if message:
+            client = TwilioRestClient(app.config['TWILIO_ACCOUNT_SID'],
+                    app.config['TWILIO_AUTH_TOKEN'])
+            call = client.calls.create(to="14156943179",
+                    from_=app.config['TWILIO_CALLER_ID'],
+                    url=url_for('.voice', message=message, _external=True))
+    return render_template('callmemaybe.html',
             configuration_error=configuration_error)
 
 # If PORT not specified by environment, assume development config.
