@@ -75,7 +75,7 @@ def callmemaybe():
             token = None
     if not configuration_error:
         try:
-            message = request.args['message']
+            message = request.form['message']
         except Exception:
             message = False
         if message:
