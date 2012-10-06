@@ -1,4 +1,4 @@
-package org.womensp2p.ivr;
+package org.womensp2p.backend;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
