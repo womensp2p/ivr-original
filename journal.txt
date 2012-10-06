@@ -1,0 +1,59 @@
+
+
+Saturday, October 6, 2012
+
+Grace Hopper Celebration of Women in Computing
+Open Source Day
+
+Nearly everyone working on this project today is new to the project and many 
+of us are new to open source too! To start off, Rachel explained to us the 
+project aims. The goal is to create a system so that women in Haiti can call
+and leave voice messages on the system and the voice messages will get sent
+to everyone in the database.
+
+We plan to use contact data from an existing network called Fonekoze 
+(english pronounciation: "phone-ko-zay"). Fonekoze is a microfinance network
+that has a database of women, and the database will soon contain their phone
+numbers.
+
+There is a group of students in Haiti who recently did an internship where they
+wrote a java application that is a prototype for allowing users to post their phone
+numbers to the database. We had a conference call where we got to meet each other
+and they talked us through the application.
+
+We put the java application on a git repository and set up maven to compile it.
+This will allow everyone to have access to the same source code and the same 
+method of compilation.
+
+Ryan, Trish, Adrian, and Bonnie worked on the text-to-speech component using
+twilio. Leah stayed in touch with the ladies in Haiti, helped get them 
+onboard using git and maven, and explained the features we're adding.
+
+Another feature to add is accepting voice messages from members, converting them
+to text, and posting them to the database where they can reach everybody in 
+the network.
+
+--Leah
+
+Participants in Haiti (people on the skype chat):
+Anne
+Carla
+Josie Anne
+Lusmat
+Tabitha
+Rose
+
+Participants in Baltimore at Open Source Day:
+Rachel
+Venia
+Bonnie
+Adrienne
+Leah
+Trish
+Ryan
+Chris
+Helen
+
+(This list is incomplete, sorry for people I missed!)
+
+----
