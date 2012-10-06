@@ -6,6 +6,7 @@ from flask import url_for
 from flask import request
 
 from twilio import twiml
+from twilio.rest import TwilioRestClient
 from twilio.util import TwilioCapability
 
 
@@ -62,6 +63,24 @@ def index():
     return render_template('index.html', params=params,
             configuration_error=None)
 
+@app.route('/callmemaybe')
+def client():
+    configuration_error = None
+    for key in ('TWILIO_ACCOUNT_SID', 'TWILIO_AUTH_TOKEN', 'TWILIO_APP_SID',
+            'TWILIO_CALLER_ID'):
+        if not app.config[key]:
+            configuration_error = "Missing from local_settings.py: " \
+                    "%s" % key
+            token = None
+    if not configuration_error:
+        client = TwilioRestClient(app.config['TWILIO_ACCOUNT_SID'],
+                app.config['TWILIO_AUTH_TOKEN'])
+        call = client.calls.create(to="14156943179",
+                from_=app.config['TWILIO_CALLER_ID'],
+                url=url_for('.voice', _external=True))
+    params = {'token': False}
+    return render_template('callmemaybe.html', params=params,
+            configuration_error=configuration_error)
 
 # If PORT not specified by environment, assume development config.
 if __name__ == '__main__':
