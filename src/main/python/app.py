@@ -64,7 +64,7 @@ def index():
     return render_template('index.html', params=params,
             configuration_error=None)
 
-@app.route('/callmemaybe')
+@app.route('/callmemaybe', methods=['GET', 'POST'])
 def callmemaybe():
     configuration_error = None
     for key in ('TWILIO_ACCOUNT_SID', 'TWILIO_AUTH_TOKEN', 'TWILIO_APP_SID',
