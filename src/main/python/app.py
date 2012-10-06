@@ -64,7 +64,7 @@ def index():
             configuration_error=None)
 
 @app.route('/callmemaybe')
-def client():
+def callmemaybe():
     configuration_error = None
     for key in ('TWILIO_ACCOUNT_SID', 'TWILIO_AUTH_TOKEN', 'TWILIO_APP_SID',
             'TWILIO_CALLER_ID'):
