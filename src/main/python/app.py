@@ -19,8 +19,9 @@ app.config.from_pyfile('local_settings.py')
 @app.route('/voice', methods=['GET', 'POST'])
 def voice():
     message = request.args['message']
+    language = request.args['language']
     response = twiml.Response()
-    response.say(message, voice="woman", language="fr")
+    response.say(message, voice="woman", language=language)
     return str(response)
 
 
@@ -76,14 +77,19 @@ def callmemaybe():
     if not configuration_error:
         try:
             message = request.form['message']
+            number = request.form['number']
+            language = request.form['language']
         except Exception:
             message = False
         if message:
             client = TwilioRestClient(app.config['TWILIO_ACCOUNT_SID'],
                     app.config['TWILIO_AUTH_TOKEN'])
-            call = client.calls.create(to="14156943179",
+            call = client.calls.create(to=number,
                     from_=app.config['TWILIO_CALLER_ID'],
-                    url=url_for('.voice', message=message, _external=True))
+                    url=url_for('.voice',
+                        message=message,
+                        language=language,
+                        _external=True))
     return render_template('callmemaybe.html',
             configuration_error=configuration_error)
 

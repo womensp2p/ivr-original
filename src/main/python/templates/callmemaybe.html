@@ -1,26 +1,24 @@
 {% extends "base.html" %}
 
-{% block title %}Client{% endblock %}
+{% block title %}Call me, maybe?{% endblock %}
 
 {% block head %}
-<link href="http://static0.twilio.com/packages/quickstart/client.css"
-  type="text/css" rel="stylesheet" />
-{% if not configuration_error %}
-<script type="text/javascript"
-  src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js">
-</script>
-{% endif %}
 {% endblock %}
 
 {% block content %}
 <form method="post">
+  Dial this number: <input name="number" value="14156943179" />
+  Say these words:
   <textarea name="message">Bonjour, ceci est Twilio.</textarea>
+  In
+  <select name="language">
+    <option value="fr">French</option>
+    <option value="en">English</option>
+  </select>
   <input type="submit" value="Say it on the phone" />
 </form>
 {% if configuration_error %}
 {{ configuration_error }}
-{% else %}
-Loading pigeons...
 {% endif %}
 </div>
 {% endblock %}
