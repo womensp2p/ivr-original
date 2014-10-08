@@ -1,0 +1,9 @@
+
+Install dependencies
+$ mvn install
+
+Build
+$ mvn build
+
+Run
+$ java -cp target/ivr-1.0.0-SNAPSHOT.jar  org.womensp2p.ivr.Repertoire_telephonique
